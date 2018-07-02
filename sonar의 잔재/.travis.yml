@@ -1,0 +1,22 @@
+language: objective-c
+osx_image: xcode8.3
+#language: csharp
+dotnet : 2.0.0
+
+addons:
+  sonarcloud:
+    organization: "sibadoge1-github" # the key of the org you chose at step #3
+    token:
+      secure: "$SONAR_TOKEN" # encrypted value of your token
+
+before_install:
+- chmod a+x ./Scripts/install.sh
+- chmod a+x ./Scripts/build.sh
+- chmod a+x ./Scripts/MSBuild.sh
+
+#install:
+#- ./Scripts/install.sh
+script:
+#- ./Scripts/build.sh
+- ./Scripts/MSBuild.sh
+- sonar-scanner
